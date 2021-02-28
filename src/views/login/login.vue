@@ -61,9 +61,9 @@ export default {
         this.$axios.post('login', this.loginForm)
           .then(res => {
             if (res.data.meta.status !== 200) {
-              return console.log('登录失败')
+              return this.$message.error('登录失败')
             }
-            console.log('登录成功')
+            this.$message.success('登录成功')
           })
       })
     }
@@ -73,6 +73,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .login_container {
   background-color: #2b4b6b;
   height: 100%;
