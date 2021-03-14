@@ -7,6 +7,7 @@ import './assets/css/iconfont/iconfont.css'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:9090/'
+axios.defaults.headers = { 'Content-Type': 'application/json' }
 Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false

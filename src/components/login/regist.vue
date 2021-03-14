@@ -9,15 +9,17 @@
         </el-input>
       </el-form-item>
       <!-- 邮箱验证码 -->
-      <el-form-item prop="verifyEmailCode" class="verifyCode_input">
+      <el-form-item prop="verifyMailCode" class="verifyCode_input">
         <el-row>
           <el-col :span="16">
-            <el-input v-model="registForm.verifyEmailCode" placeholder="邮箱验证码">
+            <el-input v-model="registForm.verifyMailCode" placeholder="邮箱验证码">
               <i slot="prefix" class="el-input__icon iconfont icon-account-fill inputIcon"></i>
             </el-input>
           </el-col>
           <el-col :span="7" :push="1">
-            <el-button class="btn" type="primary" @click="sendEmailCode">发送验证码</el-button>
+            <el-button class="btn" type="primary" @click="sendMailCode"
+              :disabled="sendMailButtonDisabled">{{sendMailButton}}
+            </el-button>
           </el-col>
         </el-row>
       </el-form-item>
@@ -65,16 +67,19 @@ export default {
     return {
       registForm: {
         username: '',
-        verifyEmailCode: '',
+        verifyMailCode: '',
         password: '',
         rePassword: ''
       },
+      sendMailButton: '发送验证码',
+      sendMailButtonDisabled: false,
+      times: 90,
       registFormRules: {
         username: [
           { required: true, message: '请输入电子邮箱', trigger: 'blur' },
           { type: 'email', message: '请输入电子邮箱', trigger: 'blur' }
         ],
-        verifyEmailCode: [
+        verifyMailCode: [
           { required: true, message: '请输入验证码', trigger: 'blur' }
         ],
         password: [
@@ -93,13 +98,36 @@ export default {
     resetRegistForm () {
       this.$refs.registFormRef.resetFields()
     },
-    sendEmailCode () {
-      // asd
+    sendMailCode () {
+      this.$refs.registFormRef.validateField('username', errorMessage => {
+        if (errorMessage) return
+        this.$axios.post('login/mailVerifyCode', this.registForm)
+          .then(res => {
+            if (res.data.status === 200) {
+              this.$message.success(res.data.msg)
+              this.sendMailButtonDisabled = true
+              this.sendMailButton = '重新发送(' + this.times + ')'
+              this.timer = setInterval(() => {
+                if (this.times === 0) {
+                  this.sendMailButton = '发送验证码'
+                  this.sendMailButtonDisabled = false
+                  this.times = 90
+                  clearInterval(this.timer)
+                  return
+                }
+                this.times--
+                this.sendMailButton = '重新发送(' + this.times + ')'
+              }, 1000)
+            } else {
+              this.$message.error(res.data.msg)
+            }
+          })
+      })
     },
     regist () {
       this.$refs.registFormRef.validate(valid => {
         if (!valid) return
-        this.$axios.post('login', this.registForm)
+        this.$axios.post('login/regist', this.registForm)
           .then(res => {
             if (res.data.meta.status !== 200) {
               return this.$message.error('登录失败')
