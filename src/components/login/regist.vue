@@ -84,7 +84,7 @@ export default {
           { type: 'email', message: '请输入电子邮箱', trigger: 'blur' }
         ],
         nickname: [
-          { required: true, message: '请输入电子邮箱', trigger: 'blur' },
+          { required: true, message: '请输入姓名', trigger: 'blur' },
           { max: 12, message: '长度最多为12个字符', trigger: 'blur' }
         ],
         verifyMailCode: [
