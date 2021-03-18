@@ -79,15 +79,15 @@ export default {
       },
       loginFormRules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { type: 'email', message: '请输入电子邮箱', trigger: 'blur' }
+          { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入登录密码', trigger: 'blur' },
           { min: 6, max: 16, message: '长度在6到16个字符', trigger: 'blur' }
         ],
         verifyCode: [
-          { required: true, message: '请输入验证码', trigger: 'blur' }
+          // todo 开发阶段不验证
+          // { required: true, message: '请输入验证码', trigger: 'blur' }
         ],
         role: [
           { type: 'enum', enum: ['admin', 'user'] }
@@ -104,12 +104,16 @@ export default {
     login () {
       this.$refs.loginFormRef.validate(valid => {
         if (!valid) return
-        this.$axios.post('login', this.loginForm)
+        this.$axios.post('login/login', this.loginForm)
           .then(res => {
-            if (res.data.meta.status !== 200) {
-              return this.$message.error('登录失败')
+            if (res.data.status === 200) {
+              window.sessionStorage.setItem('isLogin', true)
+              this.$router.push('/index')
+            } else {
+              this.$message.error(res.data.msg)
+              this.loginForm.verifyCode = ''
+              this.changeImg()
             }
-            this.$message.success('登录成功')
           })
       })
     },
@@ -131,7 +135,7 @@ export default {
 <style lang="less" scoped>
 .login_form {
   position: absolute;
-  bottom: 0;
+  top: 115px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;

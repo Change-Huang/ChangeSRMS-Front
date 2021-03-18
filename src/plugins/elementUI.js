@@ -11,7 +11,8 @@ import {
   Row,
   Radio,
   Link,
-  Image
+  Image,
+  MessageBox
 } from 'element-ui'
 
 Vue.use(Button)
@@ -26,3 +27,7 @@ Vue.use(Row)
 Vue.use(Link)
 Vue.use(Image)
 Vue.prototype.$message = Message
+Vue.prototype.$msgbox = MessageBox
+Vue.prototype.$alert = MessageBox.alert
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$prompt = MessageBox.prompt

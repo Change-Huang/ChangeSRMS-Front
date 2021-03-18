@@ -48,9 +48,6 @@
               <el-link type="primary" @click="login">用户登录</el-link>
             </div>
           </el-col>
-          <el-col :span="5">
-            <el-link type="primary" @click="forget">忘记密码</el-link>
-          </el-col>
         </el-row>
       </div>
     </el-form>
@@ -99,13 +96,14 @@ export default {
       this.$refs.registFormRef.resetFields()
     },
     sendMailCode () {
+      this.sendMailButtonDisabled = true
+      this.sendMailButton = '重新发送'
       this.$refs.registFormRef.validateField('username', errorMessage => {
         if (errorMessage) return
         this.$axios.post('login/mailVerifyCode', this.registForm)
           .then(res => {
             if (res.data.status === 200) {
               this.$message.success(res.data.msg)
-              this.sendMailButtonDisabled = true
               this.sendMailButton = '重新发送(' + this.times + ')'
               this.timer = setInterval(() => {
                 if (this.times === 0) {
@@ -119,6 +117,8 @@ export default {
                 this.sendMailButton = '重新发送(' + this.times + ')'
               }, 1000)
             } else {
+              this.sendMailButton = '发送验证码'
+              this.sendMailButtonDisabled = false
               this.$message.error(res.data.msg)
             }
           })
@@ -129,18 +129,22 @@ export default {
         if (!valid) return
         this.$axios.post('login/regist', this.registForm)
           .then(res => {
-            if (res.data.meta.status !== 200) {
-              return this.$message.error('登录失败')
+            if (res.data.status === 200) {
+              this.$msgbox({
+                title: '提示',
+                message: res.data.msg,
+                type: 'success',
+                showClose: false
+              })
+              this.$router.push('/')
+            } else {
+              this.$message.error(res.data.msg)
             }
-            this.$message.success('登录成功')
           })
       })
     },
     login () {
       this.$router.push('/')
-    },
-    forget () {
-      this.$router.push('/forget')
     }
   }
 }
@@ -150,7 +154,7 @@ export default {
 <style lang="less" scoped>
 .regist_form {
   position: absolute;
-  bottom: 0;
+  top: 105px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;

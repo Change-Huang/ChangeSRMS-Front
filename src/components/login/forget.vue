@@ -4,7 +4,7 @@
     <el-form class="forget_form" ref="forgetFormRef" :model="forgetForm" :rules="forgetFormRules">
       <!-- 用户名 -->
       <el-form-item prop="username">
-        <el-input v-model="forgetForm.username" placeholder="注册邮箱">
+        <el-input v-model="forgetForm.username" placeholder="用户名">
           <i slot="prefix" class="el-input__icon iconfont icon-account-fill inputIcon"></i>
         </el-input>
       </el-form-item>
@@ -43,9 +43,6 @@
               <el-link type="primary" @click="login">用户登录</el-link>
             </div>
           </el-col>
-          <el-col :span="5">
-            <el-link type="primary" @click="regist">用户注册</el-link>
-          </el-col>
         </el-row>
       </div>
     </el-form>
@@ -80,12 +77,21 @@ export default {
     forget () {
       this.$refs.forgetFormRef.validate(valid => {
         if (!valid) return
-        this.$axios.post('login', this.forgetForm)
+        this.$axios.post('login/forget', this.forgetForm)
           .then(res => {
-            if (res.data.meta.status !== 200) {
-              return this.$message.error('登录失败')
+            if (res.data.status === 200) {
+              this.$msgbox({
+                title: '提示',
+                message: res.data.msg,
+                type: 'warning',
+                showClose: false
+              })
+              this.$router.push('/')
+            } else {
+              this.$message.error(res.data.msg)
+              this.forgetForm.verifyCode = ''
+              this.changeImg()
             }
-            this.$message.success('登录成功')
           })
       })
     },
@@ -95,9 +101,6 @@ export default {
     },
     login () {
       this.$router.push('/')
-    },
-    regist () {
-      this.$router.push('/regist')
     }
   }
 }
@@ -107,7 +110,7 @@ export default {
 <style lang="less" scoped>
 .forget_form {
   position: absolute;
-  bottom: 0;
+  top: 170px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
