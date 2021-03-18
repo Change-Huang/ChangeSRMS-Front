@@ -23,6 +23,12 @@
           </el-col>
         </el-row>
       </el-form-item>
+      <!-- 姓名 -->
+      <el-form-item prop="nickname">
+        <el-input v-model="registForm.nickname" placeholder="姓名">
+          <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+        </el-input>
+      </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
         <el-input v-model="registForm.password" type="password" placeholder="密码">
@@ -64,6 +70,7 @@ export default {
     return {
       registForm: {
         username: '',
+        nickname: '',
         verifyMailCode: '',
         password: '',
         rePassword: ''
@@ -75,6 +82,10 @@ export default {
         username: [
           { required: true, message: '请输入电子邮箱', trigger: 'blur' },
           { type: 'email', message: '请输入电子邮箱', trigger: 'blur' }
+        ],
+        nickname: [
+          { required: true, message: '请输入电子邮箱', trigger: 'blur' },
+          { max: 12, message: '长度最多为12个字符', trigger: 'blur' }
         ],
         verifyMailCode: [
           { required: true, message: '请输入验证码', trigger: 'blur' }
@@ -154,7 +165,7 @@ export default {
 <style lang="less" scoped>
 .regist_form {
   position: absolute;
-  top: 105px;
+  top: 102px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;

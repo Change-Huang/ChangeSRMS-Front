@@ -50,7 +50,7 @@ export default {
 
 .login_box {
   width: 450px;
-  height: 450px;
+  height: 510px;
   background-color: #fff;
   border-radius: 3px;
   position: absolute;

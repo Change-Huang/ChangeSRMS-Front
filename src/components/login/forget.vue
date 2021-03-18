@@ -110,7 +110,7 @@ export default {
 <style lang="less" scoped>
 .forget_form {
   position: absolute;
-  top: 170px;
+  top: 202px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
@@ -145,6 +145,7 @@ export default {
 .btns {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 
   .btn {
     width: 150px;

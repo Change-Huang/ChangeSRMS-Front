@@ -23,11 +23,11 @@ const router = new VueRouter({
   }]
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/' || to.path === '/forget' || to.path === '/regist') return next()
-  const isLogin = window.sessionStorage.getItem('isLogin')
-  if (isLogin === null || isLogin === false) return next('/')
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/' || to.path === '/forget' || to.path === '/regist') return next()
+//   const isLogin = window.sessionStorage.getItem('isLogin')
+//   if (isLogin === null || isLogin === false) return next('/')
+//   next()
+// })
 
 export default router

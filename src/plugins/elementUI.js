@@ -12,7 +12,14 @@ import {
   Radio,
   Link,
   Image,
-  MessageBox
+  MessageBox,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Menu,
+  MenuItem,
+  Submenu
 } from 'element-ui'
 
 Vue.use(Button)
@@ -26,6 +33,13 @@ Vue.use(Radio)
 Vue.use(Row)
 Vue.use(Link)
 Vue.use(Image)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Aside)
+Vue.use(Main)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(Submenu)
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert
