@@ -5,6 +5,7 @@ import Index from '../views/index.vue'
 import LoginComponent from '../components/login/login.vue'
 import ForgetComponent from '../components/login/forget.vue'
 import RegistComponent from '../components/login/regist.vue'
+import SiteManageComponent from '../components/siteManage/siteList.vue'
 
 Vue.use(VueRouter)
 
@@ -19,10 +20,14 @@ const router = new VueRouter({
     ]
   }, {
     path: '/index',
-    component: Index
+    component: Index,
+    children: [
+      { path: '/siteManage', component: SiteManageComponent }
+    ]
   }]
 })
 
+// todo
 // router.beforeEach((to, from, next) => {
 //   if (to.path === '/' || to.path === '/forget' || to.path === '/regist') return next()
 //   const isLogin = window.sessionStorage.getItem('isLogin')

@@ -86,7 +86,7 @@ export default {
           { min: 6, max: 16, message: '长度在6到16个字符', trigger: 'blur' }
         ],
         verifyCode: [
-          // todo 开发阶段不验证
+          // TODO 开发阶段不验证
           // { required: true, message: '请输入验证码', trigger: 'blur' }
         ],
         role: [
