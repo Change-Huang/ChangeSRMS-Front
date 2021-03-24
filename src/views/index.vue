@@ -1,3 +1,5 @@
+<!-- 主页面 -->
+
 <template>
   <el-container class="index-container">
     <!-- 头部区域 -->
@@ -56,7 +58,7 @@ export default {
   },
   methods: {
     async getUserData () {
-      this.$axios.post('index/userData')
+      this.$axios.post('/index/userData')
         .then(res => {
           if (res.data.status === 200) {
             this.role = res.data.data.role + ' :'
@@ -73,7 +75,7 @@ export default {
         })
     },
     logout () {
-      this.$axios.post('login/logout')
+      this.$axios.post('/login/logout')
         .then(res => {
           if (res.data.status === 200) {
             this.$message.success(res.data.msg)

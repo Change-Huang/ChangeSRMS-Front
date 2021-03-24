@@ -77,7 +77,7 @@ export default {
     forget () {
       this.$refs.forgetFormRef.validate(valid => {
         if (!valid) return
-        this.$axios.post('login/forget', this.forgetForm)
+        this.$axios.post('/login/forget', this.forgetForm)
           .then(res => {
             if (res.data.status === 200) {
               this.$msgbox({

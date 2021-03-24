@@ -1,3 +1,5 @@
+<!-- 主页面渲染容器 -->
+
 <template>
   <div id="app">
     <router-view></router-view>

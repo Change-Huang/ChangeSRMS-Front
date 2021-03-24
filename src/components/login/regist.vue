@@ -111,7 +111,7 @@ export default {
       this.sendMailButton = '重新发送'
       this.$refs.registFormRef.validateField('username', errorMessage => {
         if (errorMessage) return
-        this.$axios.post('login/mailVerifyCode', this.registForm)
+        this.$axios.post('/login/mailVerifyCode', this.registForm)
           .then(res => {
             if (res.data.status === 200) {
               this.$message.success(res.data.msg)
@@ -138,7 +138,7 @@ export default {
     regist () {
       this.$refs.registFormRef.validate(valid => {
         if (!valid) return
-        this.$axios.post('login/regist', this.registForm)
+        this.$axios.post('/login/regist', this.registForm)
           .then(res => {
             if (res.data.status === 200) {
               this.$msgbox({

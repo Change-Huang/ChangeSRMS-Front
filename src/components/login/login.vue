@@ -104,7 +104,7 @@ export default {
     login () {
       this.$refs.loginFormRef.validate(valid => {
         if (!valid) return
-        this.$axios.post('login/login', this.loginForm)
+        this.$axios.post('/login/login', this.loginForm)
           .then(res => {
             if (res.data.status === 200) {
               window.sessionStorage.setItem('isLogin', true)

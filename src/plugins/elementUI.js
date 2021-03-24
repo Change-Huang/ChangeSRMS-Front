@@ -22,7 +22,15 @@ import {
   Submenu,
   Breadcrumb,
   BreadcrumbItem,
-  Card
+  Card,
+  Table,
+  TableColumn,
+  Tag,
+  Tooltip,
+  Pagination,
+  Loading,
+  Dialog,
+  Switch
 } from 'element-ui'
 
 Vue.use(Button)
@@ -46,6 +54,14 @@ Vue.use(Submenu)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
 Vue.use(Card)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Tag)
+Vue.use(Tooltip)
+Vue.use(Pagination)
+Vue.use(Loading)
+Vue.use(Dialog)
+Vue.use(Switch)
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert
