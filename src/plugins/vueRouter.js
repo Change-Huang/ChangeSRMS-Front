@@ -6,6 +6,7 @@ import LoginComponent from '../components/login/login.vue'
 import ForgetComponent from '../components/login/forget.vue'
 import RegistComponent from '../components/login/regist.vue'
 import SiteManageComponent from '../components/siteManage/siteList.vue'
+import UserManageComponent from '../components/userManage/userList.vue'
 
 Vue.use(VueRouter)
 
@@ -22,7 +23,8 @@ const router = new VueRouter({
     path: '/index',
     component: Index,
     children: [
-      { path: '/siteManage', component: SiteManageComponent }
+      { path: '/siteManage', component: SiteManageComponent },
+      { path: '/userManage', component: UserManageComponent }
     ]
   }]
 })

@@ -1,5 +1,4 @@
 <!-- 主页面 -->
-
 <template>
   <el-container class="index-container">
     <!-- 头部区域 -->
@@ -9,8 +8,8 @@
         <div>Change场地预约管理系统</div>
       </div>
       <div class="top-menu-right">
-        <div>{{role}}</div>
-        <el-menu mode="horizontal" @select="handleSelect" background-color="#373d41"
+        <div>{{showRole}}</div>
+        <el-menu mode="horizontal" ref="headMenu" @select="handleSelect" background-color="#373d41"
           text-color="#fff" active-text-color="#ffe59b">
           <el-submenu index="userCenter">
             <template slot="title">{{nickname}}</template>
@@ -24,44 +23,67 @@
     <el-container>
       <!-- 左侧侧边栏 -->
       <el-aside width="200px">
-        <el-menu default-active="2" @open="handleOpen" @close="handleClose"
-          background-color="#333744" text-color="#fff" active-text-color="#ffe59b" router>
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>场地管理</span>
-            </template>
-            <el-menu-item index="/siteManage">场地列表</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-submenu>
-        </el-menu>
+        <component :is="leftSide"></component>
       </el-aside>
       <!-- 主界面 -->
       <el-main>
-        <router-view></router-view>
+        <transition name="mainTransition">
+          <router-view></router-view>
+        </transition>
       </el-main>
     </el-container>
+    <!-- 修改密码弹窗 -->
+    <component :is="updatePasswordDialog" :showDialog="showDialog" @closeDialog="closeDialog">
+    </component>
   </el-container>
 </template>
 
 <script>
+// 导入各种组件
+import updatePasswordDialog from '../components/index/updatePasswordDialog'
+import leftSide from '../components/index/leftSide'
 export default {
-  created () {
-    this.getUserData()
-  },
   data () {
     return {
       role: '',
-      nickname: ''
+      showRole: '',
+      nickname: '',
+      // 控制修改密码对话框的显示与隐藏
+      showDialog: false,
+      // 渲染组件
+      updatePasswordDialog: 'updatePasswordDialog',
+      leftSide: 'leftSide',
+      // 激活的菜单
+      activeIndex: ''
     }
   },
+  // 组件
+  components: {
+    updatePasswordDialog,
+    leftSide
+  },
+  // 创建成功就获取用户列表
+  created () {
+    this.getUserData()
+  },
   methods: {
-    async getUserData () {
+    // 获取用户信息
+    getUserData () {
       this.$axios.post('/index/userData')
         .then(res => {
           if (res.data.status === 200) {
-            this.role = res.data.data.role + ' :'
+            this.role = res.data.data.role
+            switch (res.data.data.role) {
+              case 'user':
+                this.showRole = '普通用户 :'
+                break
+              case 'general':
+                this.showRole = '管理员 :'
+                break
+              case 'super':
+                this.showRole = '超级管理员 :'
+                break
+            }
             this.nickname = res.data.data.nickname
           } else if (res.data.status === 302) {
             this.$msgbox({
@@ -74,6 +96,7 @@ export default {
           }
         })
     },
+    // 登出
     logout () {
       this.$axios.post('/login/logout')
         .then(res => {
@@ -83,18 +106,23 @@ export default {
           }
         })
     },
+    // 修改密码
+    updatePassword () {
+      this.showDialog = true
+    },
+    // 控制修改密码的对话框关闭
+    closeDialog () {
+      this.$refs.headMenu.activeIndex = ''
+      this.showDialog = false
+    },
+    // 监听右上角菜单的点击
     handleSelect (key, keyPath) {
+      if (key === 'updatePassword') {
+        this.updatePassword()
+      }
       if (key === 'logout') {
         this.logout()
       }
-      console.log(key)
-      console.log(keyPath)
-    },
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
     }
   }
 }
@@ -151,6 +179,16 @@ export default {
 
 .el-main {
   background-color: #eaedf1;
+}
+
+.mainTransition-enter-active {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+.mainTransition-leave-active {
+  animation-name: fadeOut;
+  animation-duration: 0.5s;
 }
 
 </style>

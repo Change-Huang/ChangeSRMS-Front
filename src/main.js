@@ -11,6 +11,7 @@ import './assets/css/iconfont/iconfont.css'
 axios.defaults.baseURL = 'http://localhost:9090'
 axios.defaults.headers = { 'Content-Type': 'application/json' }
 axios.defaults.withCredentials = true
+axios.defaults.timeout = 15000
 Vue.prototype.$axios = axios
 
 // 生产环境不警告
