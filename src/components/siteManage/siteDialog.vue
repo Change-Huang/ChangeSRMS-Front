@@ -63,6 +63,7 @@ export default {
           // 如果是添加
           const addSiteForm = this.siteForm
           delete addSiteForm.id
+          delete addSiteForm.version
           this.$axios.post('/siteManage/addSite', addSiteForm)
             .then(res => {
               if (res.data.status === 200) {

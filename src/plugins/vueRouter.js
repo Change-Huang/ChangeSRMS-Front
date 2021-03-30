@@ -7,6 +7,7 @@ import ForgetComponent from '../components/login/forget.vue'
 import RegistComponent from '../components/login/regist.vue'
 import SiteManageComponent from '../components/siteManage/siteList.vue'
 import UserManageComponent from '../components/userManage/userList.vue'
+import AdminManageComponent from '../components/adminManage/adminList.vue'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,8 @@ const router = new VueRouter({
     component: Index,
     children: [
       { path: '/siteManage', component: SiteManageComponent },
-      { path: '/userManage', component: UserManageComponent }
+      { path: '/userManage', component: UserManageComponent },
+      { path: '/adminManage', component: AdminManageComponent }
     ]
   }]
 })
