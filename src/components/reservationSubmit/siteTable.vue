@@ -4,6 +4,7 @@
     <el-table-column label="名称" prop="siteName"></el-table-column>
     <el-table-column label="位置" prop="location"></el-table-column>
     <el-table-column label="容纳人数" prop="seat"></el-table-column>
+    <el-table-column label="已被借用的次数" prop="reservationTimes"></el-table-column>
     <!-- 钥匙列 -->
     <el-table-column label="是否需要钥匙" prop="hasKeys">
       <template slot-scope="scope">
@@ -11,26 +12,14 @@
         </el-tag>
       </template>
     </el-table-column>
-    <!-- 已被预约列 -->
-    <el-table-column label="是否被预约" prop="isLent">
-      <template slot-scope="scope">
-        <el-tag :type="scope.row.isLent?'warning':''">{{scope.row.isLent?'已被预约':'未被预约'}}
-        </el-tag>
-      </template>
-    </el-table-column>
     <!-- 相关操作列 -->
     <el-table-column label="操作">
       <template slot-scope="scope">
-        <el-tooltip class="item" effect="dark" content="查看与编辑" placement="top" :enterable="false"
+        <el-tooltip class="item" effect="dark" content="借用申请" placement="top" :enterable="false"
           :open-delay="openDelay">
-          <el-button type="primary" size="small" plain icon="el-icon-edit"
-            @click="editSite(scope.row)">
+          <el-button type="warning" size="small" plain icon="el-icon-bell"
+            @click="reservation(scope.row.id, scope.row.siteName)">
           </el-button>
-        </el-tooltip>
-        <el-tooltip class="item" effect="dark" content="删除" placement="top" :enterable="false"
-          :open-delay="openDelay">
-          <el-button type="danger" size="small" plain icon="el-icon-delete"
-            @click="deleteSite($event, scope.row.id, scope.row.version)"></el-button>
         </el-tooltip>
       </template>
     </el-table-column>
@@ -65,23 +54,8 @@ export default {
       return (this.queryinfo.pageNum - 1) * this.queryinfo.pageSize + index + 1
     },
     // 监听每一行的操作按钮
-    editSite (site) {
-      this.$emit('editSite', {
-        id: site.id,
-        siteName: site.siteName,
-        location: site.location,
-        seat: site.seat,
-        hasKeys: site.hasKeys,
-        version: site.version
-      })
-    },
-    deleteSite (event, id, version) {
-      // 让按钮失焦
-      let target = event.target
-      if (target.nodeName === 'SPAN' || target.nodeName === 'I') {
-        target = event.target.parentNode
-      }
-      this.$emit('deleteSite', target, id, version)
+    reservation (id, name) {
+      this.$emit('reservation', id, name)
     }
   }
 }

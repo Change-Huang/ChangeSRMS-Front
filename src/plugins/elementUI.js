@@ -32,7 +32,9 @@ import {
   Dialog,
   Switch,
   Select,
-  Option
+  Option,
+  DatePicker,
+  TimeSelect
 } from 'element-ui'
 
 Vue.use(Button)
@@ -66,6 +68,8 @@ Vue.use(Dialog)
 Vue.use(Switch)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(DatePicker)
+Vue.use(TimeSelect)
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert

@@ -36,3 +36,7 @@ textarea {
   right: 20px;
   top: 80px;
 }
+
+.el-date-editor.el-input {
+  width: 178px;
+}
