@@ -8,7 +8,8 @@ import RegistComponent from '../components/login/regist.vue'
 import SiteManageComponent from '../components/siteManage/siteList.vue'
 import UserManageComponent from '../components/userManage/userList.vue'
 import AdminManageComponent from '../components/adminManage/adminList.vue'
-import reservationSubmitComponent from '../components/reservationSubmit/siteList.vue'
+import ReservationSubmitComponent from '../components/reservationSubmit/siteList.vue'
+import HistoryManageComponent from '../components/historyManage/historyList.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,8 @@ const router = new VueRouter({
       { path: '/siteManage', component: SiteManageComponent },
       { path: '/userManage', component: UserManageComponent },
       { path: '/adminManage', component: AdminManageComponent },
-      { path: '/reservationSubmit', component: reservationSubmitComponent }
+      { path: '/reservationSubmit', component: ReservationSubmitComponent },
+      { path: '/historyManage', component: HistoryManageComponent }
     ]
   }]
 })

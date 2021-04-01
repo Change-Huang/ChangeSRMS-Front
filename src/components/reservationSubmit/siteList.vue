@@ -2,7 +2,7 @@
   <div class="indexMain">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户功能</el-breadcrumb-item>
       <el-breadcrumb-item>借用申请</el-breadcrumb-item>
     </el-breadcrumb>
@@ -59,10 +59,6 @@ export default {
       siteTable: 'siteTable',
       // 控制添加对话框的显示与隐藏
       showDialog: false,
-      // 对话框的标题
-      dialogTitle: '',
-      // 对话框类型，是编辑还是添加
-      dialogType: '',
       // 控制表格加载的显示与隐藏
       tableLoading: false
     }

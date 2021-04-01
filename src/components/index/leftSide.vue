@@ -7,7 +7,7 @@
         <span>用户功能</span>
       </template>
       <el-menu-item index="/reservationSubmit">借用申请</el-menu-item>
-      <el-menu-item index="/reservationList">申请列表</el-menu-item>
+      <el-menu-item index="/historyManage">申请列表</el-menu-item>
     </el-submenu>
     <el-submenu index="2">
       <template slot="title">
