@@ -113,5 +113,8 @@ export default {
 </script>
 
 <style>
+.item {
+  margin: 0px;
+}
 
 </style>

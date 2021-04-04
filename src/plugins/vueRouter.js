@@ -10,6 +10,8 @@ import UserManageComponent from '../components/userManage/userList.vue'
 import AdminManageComponent from '../components/adminManage/adminList.vue'
 import ReservationSubmitComponent from '../components/reservationSubmit/siteList.vue'
 import HistoryManageComponent from '../components/historyManage/historyList.vue'
+import FirstCheckComponent from '../components/firstCheck/firstCheck.vue'
+import SecondCheckComponent from '../components/secondCheck/secondCheck.vue'
 
 Vue.use(VueRouter)
 
@@ -30,7 +32,9 @@ const router = new VueRouter({
       { path: '/userManage', component: UserManageComponent },
       { path: '/adminManage', component: AdminManageComponent },
       { path: '/reservationSubmit', component: ReservationSubmitComponent },
-      { path: '/historyManage', component: HistoryManageComponent }
+      { path: '/historyManage', component: HistoryManageComponent },
+      { path: '/firstCheck', component: FirstCheckComponent },
+      { path: '/secondCheck', component: SecondCheckComponent }
     ]
   }]
 })
