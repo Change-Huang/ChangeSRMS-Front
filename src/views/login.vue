@@ -9,7 +9,7 @@
     </div>
     <!-- 盒子 -->
     <div class="login_box">
-      <transition :name="transitionName">
+      <transition name="fade">
         <router-view></router-view>
       </transition>
     </div>
@@ -21,24 +21,6 @@ export default {
   data () {
     return {
       transitionName: ''
-    }
-  },
-  watch: {
-    $route (to, from) {
-      if (to.path === '/regist') {
-        this.transitionName = 'registIn'
-      }
-      if (to.path === '/forget') {
-        this.transitionName = 'forgetIn'
-      }
-      if (to.path === '/') {
-        if (from.path === '/regist') {
-          this.transitionName = 'registOut'
-        }
-        if (from.path === '/forget') {
-          this.transitionName = 'forgetOut'
-        }
-      }
     }
   }
 }
@@ -101,43 +83,13 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.registIn-enter-active {
-  animation-name: fadeInRight;
+.fade-enter-active {
+  animation-name: fadeIn;
   animation-duration: 0.5s;
 }
 
-.registIn-leave-active {
-  animation-name: zoomOut;
-  animation-duration: 0.5s;
-}
-
-.registOut-enter-active {
-  animation-name: zoomIn;
-  animation-duration: 0.5s;
-}
-
-.registOut-leave-active {
-  animation-name: fadeOutRight;
-  animation-duration: 0.5s;
-}
-
-.forgetIn-enter-active {
-  animation-name: fadeInLeft;
-  animation-duration: 0.5s;
-}
-
-.forgetIn-leave-active {
-  animation-name: zoomOut;
-  animation-duration: 0.5s;
-}
-
-.forgetOut-enter-active {
-  animation-name: zoomIn;
-  animation-duration: 0.5s;
-}
-
-.forgetOut-leave-active {
-  animation-name: fadeOutLeft;
+.fade-leave-active {
+  animation-name: fadeOut;
   animation-duration: 0.5s;
 }
 

@@ -23,7 +23,7 @@
     <el-container>
       <!-- 左侧侧边栏 -->
       <el-aside width="200px">
-        <component :is="leftSide"></component>
+        <component :is="leftSide" :role="role"></component>
       </el-aside>
       <!-- 主界面 -->
       <el-main>
