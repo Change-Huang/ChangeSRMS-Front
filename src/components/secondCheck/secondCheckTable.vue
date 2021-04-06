@@ -64,10 +64,10 @@ export default {
         if (loanState === 3) return 'warning'
       },
       icon (loanState) {
-        if (loanState === 0) return 'el-icon-view'
-        if (loanState === 1) return 'el-icon-view'
-        if (loanState === 2) return 'el-icon-setting'
-        if (loanState === 3) return 'el-icon-setting'
+        if (loanState === 0) return 'iconfont icon-shenhe'
+        if (loanState === 1) return 'iconfont icon-shenhe'
+        if (loanState === 2) return 'iconfont icon-xiugaishenhe'
+        if (loanState === 3) return 'iconfont icon-xiugaishenhe'
       }
     }
   },

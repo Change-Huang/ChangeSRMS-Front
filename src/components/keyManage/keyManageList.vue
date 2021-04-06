@@ -3,14 +3,15 @@
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户功能</el-breadcrumb-item>
-      <el-breadcrumb-item>申请列表</el-breadcrumb-item>
+      <el-breadcrumb-item>借用管理</el-breadcrumb-item>
+      <el-breadcrumb-item>钥匙借还</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片 -->
     <el-card>
       <!-- 列表表格 -->
-      <component :is="historyTable" :historyList="historyList" :tableLoading="tableLoading"
-        :queryinfo="queryinfo" @deleteHistory="deleteHistory">
+      <component :is="keyManageTable" :keyManageList="keyManageList" :tableLoading="tableLoading"
+        :queryinfo="queryinfo" @openTableLoading="openTableLoading"
+        @closeTableLoading="closeTableLoading" @getKeyManageList="getKeyManageList">
       </component>
       <!-- 分页区域 -->
       <el-pagination layout="total, prev, pager, next, sizes, jumper" :total="total"
@@ -23,7 +24,7 @@
 
 <script>
 // 导入对话框和表格
-import historyTable from './historyTable'
+import keyManageTable from './keyManageTable'
 export default {
   data () {
     return {
@@ -33,30 +34,30 @@ export default {
         pageSize: 10
       },
       // 列表
-      historyList: [],
+      keyManageList: [],
       // 总数
       total: 0,
       // 渲染组件
-      historyTable: 'historyTable',
+      keyManageTable: 'keyManageTable',
       // 控制表格加载的显示与隐藏
       tableLoading: false
     }
   },
   components: {
-    historyTable
+    keyManageTable
   },
   // 对象创建完成，未渲染
   created () {
-    this.getHistoryList()
+    this.getKeyManageList()
   },
   methods: {
     // 获取用户数据
-    getHistoryList () {
+    getKeyManageList () {
       this.tableLoading = true
-      this.$axios.post('/historyManage/historyList', this.queryinfo)
+      this.$axios.post('/keyManage/keyManageList', this.queryinfo)
         .then(res => {
           if (res.data.status === 200) {
-            this.historyList = res.data.data.historyList
+            this.keyManageList = res.data.data.keyManageList
             this.total = res.data.data.total
           } else if (res.data.status === 400) {
             this.$message.error(res.data.msg)
@@ -67,39 +68,18 @@ export default {
     // 监听分页的改变
     handleCurrentChange (val) {
       this.queryinfo.pageNum = val
-      this.getHistoryList()
+      this.getKeyManageList()
     },
     handleSizeChange (val) {
       this.queryinfo.pageSize = val
       this.queryinfo.pageNum = 1
-      this.getHistoryList()
+      this.getKeyManageList()
     },
-    // 删除一行
-    deleteHistory (target, id, version) {
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        // 点击确定
-        this.tableLoading = true
-        this.$axios.post('/historyManage/deleteHistory', { id: id, version: version })
-          .then(res => {
-            if (res.data.status === 200) {
-              this.$message.success(res.data.msg)
-              if ((this.queryinfo.pageNum - 1) * this.queryinfo.pageSize + 1 === this.total) {
-                this.queryinfo.pageNum--
-              }
-              this.getHistoryList()
-            } else {
-              this.tableLoading = false
-              this.$message.error(res.data.msg)
-            }
-          })
-        target.blur()
-      }).catch(() => {
-        target.blur()
-      })
+    openTableLoading () {
+      this.tableLoading = true
+    },
+    closeTableLoading () {
+      this.tableLoading = false
     }
   }
 }

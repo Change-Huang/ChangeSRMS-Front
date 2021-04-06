@@ -17,7 +17,7 @@
       <template slot-scope="scope">
         <el-tooltip class="item" effect="dark" content="借用申请" placement="top" :enterable="false"
           :open-delay="openDelay">
-          <el-button type="warning" size="small" plain icon="el-icon-bell"
+          <el-button type="warning" size="small" plain icon="iconfont icon-shenqing"
             @click="reservation(scope.row.id, scope.row.siteName)">
           </el-button>
         </el-tooltip>

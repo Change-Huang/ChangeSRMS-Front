@@ -5,13 +5,13 @@
       <!-- 用户名 -->
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" placeholder="用户名">
-          <i slot="prefix" class="el-input__icon iconfont icon-account-fill inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-xingming1 inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
         <el-input v-model="loginForm.password" type="password" placeholder="密码">
-          <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-mima1 inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 验证码 -->
@@ -19,7 +19,7 @@
         <el-row>
           <el-col :span="18">
             <el-input v-model="loginForm.verifyCode" placeholder="验证码">
-              <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+              <i slot="prefix" class="el-input__icon iconfont icon-mima inputIcon"></i>
             </el-input>
           </el-col>
           <el-col :span="5" :push="1">
@@ -86,8 +86,7 @@ export default {
           { min: 6, max: 16, message: '长度在6到16个字符', trigger: 'blur' }
         ],
         verifyCode: [
-          // TODO 开发阶段不验证
-          // { required: true, message: '请输入验证码', trigger: 'blur' }
+          { required: true, message: '请输入验证码', trigger: 'blur' }
         ],
         role: [
           { type: 'enum', enum: ['admin', 'user'] }
@@ -108,6 +107,7 @@ export default {
           .then(res => {
             if (res.data.status === 200) {
               window.sessionStorage.setItem('isLogin', true)
+              window.sessionStorage.setItem('role', this.loginForm.role)
               this.$router.push('/index')
             } else {
               this.$message.error(res.data.msg)
@@ -135,13 +135,13 @@ export default {
 <style lang="less" scoped>
 .login_form {
   position: absolute;
-  top: 147px;
+  top: 117px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
 
   .inputIcon {
-    font-size: 20px;
+    font-size: 16px;
     display: inline-block;
   }
 }

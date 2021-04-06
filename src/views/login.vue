@@ -1,11 +1,14 @@
 <template>
   <div class="login_container">
+    <div class="topic">
+      <img src="../assets/logo.png" class="animate__animated animate__fadeInUp">
+      <div class="topic animate__animated animate__fadeInUp">Change场地预约管理系统</div>
+      <div class="second_line animate__animated animate__fadeInUp">
+        让场地管理更加快捷与高效
+      </div>
+    </div>
     <!-- 盒子 -->
     <div class="login_box">
-      <!-- 头像区域 -->
-      <div class="avatar_box">
-        <img src="../assets/logo.png" alt="avatat">
-      </div>
       <transition :name="transitionName">
         <router-view></router-view>
       </transition>
@@ -44,39 +47,58 @@ export default {
 
 <style lang="less" scoped>
 .login_container {
-  background-color: #2b4b6b;
+  background-image: url(../assets/background.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
   height: 100%;
+}
+
+.topic {
+  display: flex;
+  position: fixed;
+  top: 35%;
+  left: 5%;
+  width: 80%;
+
+  >img {
+    height: 140px;
+    position: absolute;
+    top: 55px;
+    animation-delay: 0.5s;
+  }
+
+  .topic {
+    font-family: "PingFang SC";
+    font-size: 44px;
+    color: #fff;
+    letter-spacing: 3px;
+    position: absolute;
+    left: 180px;
+    top: 50px;
+    animation-delay: 1s;
+  }
+
+  .second_line {
+    font-family: "Hiragino Sans GB";
+    color: #fff;
+    font-size: 32px;
+    letter-spacing: 8px;
+    position: absolute;
+    top: 150px;
+    left: 180px;
+    animation-delay: 1.5s;
+  }
 }
 
 .login_box {
   width: 450px;
-  height: 510px;
+  height: 480px;
   background-color: #fff;
   border-radius: 3px;
   position: absolute;
-  left: 50%;
+  right: -150px;
   top: 50%;
   transform: translate(-50%, -50%);
-
-  .avatar_box {
-    height: 100px;
-    width: 100px;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 0 10px #ddd;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-
-    img {
-      width: 100%;
-      height: 100;
-      border-radius: 50%;
-      background-color: #eee;
-    }
-  }
 }
 
 .registIn-enter-active {

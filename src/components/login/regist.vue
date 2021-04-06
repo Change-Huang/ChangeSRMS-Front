@@ -5,7 +5,7 @@
       <!-- 用户名 -->
       <el-form-item prop="username">
         <el-input v-model="registForm.username" placeholder="注册邮箱">
-          <i slot="prefix" class="el-input__icon iconfont icon-account-fill inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-youxiang inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 邮箱验证码 -->
@@ -13,7 +13,7 @@
         <el-row>
           <el-col :span="16">
             <el-input v-model="registForm.verifyMailCode" placeholder="邮箱验证码">
-              <i slot="prefix" class="el-input__icon iconfont icon-account-fill inputIcon"></i>
+              <i slot="prefix" class="el-input__icon iconfont icon-mima inputIcon"></i>
             </el-input>
           </el-col>
           <el-col :span="7" :push="1">
@@ -26,19 +26,19 @@
       <!-- 姓名 -->
       <el-form-item prop="nickname">
         <el-input v-model="registForm.nickname" placeholder="姓名">
-          <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-xingming inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
         <el-input v-model="registForm.password" type="password" placeholder="密码">
-          <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-mima1 inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 确认密码 -->
       <el-form-item prop="rePassword">
         <el-input v-model="registForm.rePassword" type="password" placeholder="确认密码">
-          <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-querenmima inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 按钮 -->
@@ -165,13 +165,13 @@ export default {
 <style lang="less" scoped>
 .regist_form {
   position: absolute;
-  top: 102px;
+  top: 72px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
 
   .inputIcon {
-    font-size: 20px;
+    font-size: 16px;
     display: inline-block;
   }
 }

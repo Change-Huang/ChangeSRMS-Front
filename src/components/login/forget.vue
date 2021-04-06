@@ -5,7 +5,7 @@
       <!-- 用户名 -->
       <el-form-item prop="username">
         <el-input v-model="forgetForm.username" placeholder="用户名">
-          <i slot="prefix" class="el-input__icon iconfont icon-account-fill inputIcon"></i>
+          <i slot="prefix" class="el-input__icon iconfont icon-xingming1 inputIcon"></i>
         </el-input>
       </el-form-item>
       <!-- 验证码 -->
@@ -13,7 +13,7 @@
         <el-row>
           <el-col :span="18">
             <el-input v-model="forgetForm.verifyCode" placeholder="验证码">
-              <i slot="prefix" class="el-input__icon iconfont icon-password inputIcon"></i>
+              <i slot="prefix" class="el-input__icon iconfont icon-mima inputIcon"></i>
             </el-input>
           </el-col>
           <el-col :span="5" :push="1">
@@ -110,13 +110,13 @@ export default {
 <style lang="less" scoped>
 .forget_form {
   position: absolute;
-  top: 202px;
+  top: 172px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
 
   .inputIcon {
-    font-size: 20px;
+    font-size: 16px;
     display: inline-block;
   }
 }

@@ -62,11 +62,13 @@ export default {
         if (keyState === 0) return 'info'
         if (keyState === 1) return 'danger'
         if (keyState === 2) return ''
+        if (keyState === 3) return 'info'
       },
       keyStateFormat (keyState) {
         if (keyState === 0) return '未借出'
         if (keyState === 1) return '未归还'
         if (keyState === 2) return '已归还'
+        if (keyState === 3) return '无钥匙'
       },
       deleteContent (loanState) {
         if (loanState === 0) return '删除申请'

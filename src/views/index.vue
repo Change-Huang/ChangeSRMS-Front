@@ -103,6 +103,8 @@ export default {
           if (res.data.status === 200) {
             this.$message.success(res.data.msg)
             this.$router.push('/')
+            window.sessionStorage.removeItem('isLogin')
+            window.sessionStorage.removeItem('role')
           }
         })
     },
@@ -141,12 +143,6 @@ export default {
 
   .top-menu-left {
     display: flex;
-
-    >img {
-      height: 50px;
-      width: 50px;
-      margin-top: 5px;
-    }
 
     >div {
       margin-left: 15px;
