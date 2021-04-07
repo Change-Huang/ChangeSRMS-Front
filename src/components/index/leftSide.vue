@@ -23,8 +23,8 @@
         <span>借用管理</span>
       </template>
       <el-menu-item index="/firstCheck">初次审核</el-menu-item>
-      <el-menu-item index="/secondCheck">二次审核</el-menu-item>
-      <el-menu-item index="/keyManage" v-if="role ==='super'">钥匙借还</el-menu-item>
+      <el-menu-item index="/secondCheck" v-if="role ==='super'">二次审核</el-menu-item>
+      <el-menu-item index="/keyManage">钥匙借还</el-menu-item>
     </el-submenu>
     <el-submenu index="4" v-if="role ==='super'">
       <template slot="title">
